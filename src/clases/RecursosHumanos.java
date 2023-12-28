@@ -63,18 +63,18 @@ public void crearArchivoRRHH() {
 public void agregarRegistrosRRHH() {
 	try {
 		FileWriter fw = new FileWriter("RRHH.txt",true);
-		
+                
 		fw.write(getCodigoRRHH());
 		fw.write(",");
 		fw.write(getNombreRRHH());
 		fw.write(",");
 		fw.write(getCargoRRHH());
-		fw.write("\n");
-                fw.write(getEspecialidadRRHH());
-		fw.write("\n");
+		fw.write(",");
+		fw.write(getEspecialidadRRHH());
+                fw.write("\n");
 		fw.close();
 		
-		JOptionPane.showMessageDialog(null,"Se registr� correctamente");
+		JOptionPane.showMessageDialog(null,"Se registró correctamente");
 	} catch (Exception e) {
 		JOptionPane.showMessageDialog(null,"Ocurrió un error al registrar" + e.toString());
 	}
@@ -95,9 +95,9 @@ public void MostrarTotalRRHH(JTable tablaTotalRRHH) {
 		DefaultTableModel model = new DefaultTableModel();
 		
 		model.addColumn("Codigo");
-		model.addColumn("NombreRRHH");
-		model.addColumn("CargoRRHH");
-                model.addColumn("EspecialidadRRHH");
+		model.addColumn("Nombre");
+		model.addColumn("Cargo");
+                model.addColumn("Especialidad");
 		
 		tablaTotalRRHH.setModel(model);
 		
@@ -140,7 +140,7 @@ public void seleccionarRRHH(JTable tablaRRHH) {
 
 public void EliminarRRHH (JTable tablaRRHH, JTextField codigoRRHH) {
 	
-	//Eliminaci�n visual de la tabla
+	//Eliminación visual de la tabla
 	DefaultTableModel model = (DefaultTableModel)tablaRRHH.getModel();
 	
 	for (int i = 0; i < model.getRowCount(); i++) {
@@ -161,7 +161,7 @@ public void EliminarRRHH (JTable tablaRRHH, JTextField codigoRRHH) {
 		JOptionPane.showMessageDialog(null,"Ocurrió un problema"+ e.toString());
 	}
 	
-	//Creaci�n de los nuevos registros luego de la eliminaci�n
+	//Creaci�n de los nuevos registros luego de la eliminación
 	
 	try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File("RRHH.txt")))) {
 		StringJoiner joiner = new StringJoiner(",");
@@ -184,15 +184,19 @@ public void EliminarRRHH (JTable tablaRRHH, JTextField codigoRRHH) {
 				
 			}
 			
+			
 			bw.write(joiner.toString());
 			bw.newLine();
-			JOptionPane.showMessageDialog(null, "Se elimin� correctamente");
+			JOptionPane.showMessageDialog(null, "Se eliminó correctamente");
 		}
 
 		
 	} catch (Exception e) {
 		JOptionPane.showMessageDialog(null, "Ocurrio un error");
 	}
+	
+	
+	
 }
 
 public void EditarRRHH(JTable tablaRRHH) {
@@ -207,7 +211,7 @@ public void EditarRRHH(JTable tablaRRHH) {
 			JOptionPane.showMessageDialog(null,"Ocurrió un problema"+ e.toString());
 		}
 		
-		//Creaci�n de los nuevos registros luego de la eliminaci�n
+		//Creaci�n de los nuevos registros luego de la eliminación
 		
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File("RRHH.txt")))) {
 			StringJoiner joiner = new StringJoiner(",");
@@ -232,7 +236,7 @@ public void EditarRRHH(JTable tablaRRHH) {
 				System.out.println(joiner.toString());
 				bw.write(joiner.toString());
 				bw.newLine();
-				//JOptionPane.showMessageDialog(null, "Se modific� correctamente");
+				//JOptionPane.showMessageDialog(null, "Se modificó correctamente");
 			}
 
 			

@@ -1,1 +1,0 @@
-codigoAsegurados,nombres,apellidos,sexo,edad

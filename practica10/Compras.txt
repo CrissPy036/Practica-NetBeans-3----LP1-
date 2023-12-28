@@ -1,2 +1,0 @@
-codigoCompras,nombreProducto,DescripcionProducto,Precio1,Paracetamol,Comprimido
-Comprimido

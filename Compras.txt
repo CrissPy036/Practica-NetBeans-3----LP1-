@@ -1,0 +1,5 @@
+CodigoCompras,NombreCompras,DescripcionCompras,PrecioCompras
+1,Paracetamol,Comprimido,10000
+2,Ibuprofeno,Capsula,15000
+3,Nerviogenol,Comprimido,50000
+4,AntiAcid,Comprimido,Comprimido

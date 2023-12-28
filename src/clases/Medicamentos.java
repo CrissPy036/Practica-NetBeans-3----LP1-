@@ -66,7 +66,7 @@ public void agregarRegistrosMedicamentos() {
 		fw.write("\n");
 		fw.close();
 		
-		JOptionPane.showMessageDialog(null,"Se registr� correctamente");
+		JOptionPane.showMessageDialog(null,"Se registró correctamente");
 	} catch (Exception e) {
 		JOptionPane.showMessageDialog(null,"Ocurrió un error al registrar" + e.toString());
 	}
@@ -87,8 +87,8 @@ public void MostrarTotalMedicamentos(JTable tablaTotalMedicamentos) {
 		DefaultTableModel model = new DefaultTableModel();
 		
 		model.addColumn("Codigo");
-		model.addColumn("NombreMedicamento");
-		model.addColumn("TipoMedicamento");
+		model.addColumn("Medicamento");
+		model.addColumn("Tipo");
 		
 		tablaTotalMedicamentos.setModel(model);
 		
@@ -151,7 +151,7 @@ public void EliminarMedicamentos (JTable tablaMedicamentos, JTextField codigoMed
 		JOptionPane.showMessageDialog(null,"Ocurrió un problema"+ e.toString());
 	}
 	
-	//Creaci�n de los nuevos registros luego de la eliminaci�n
+	//Creaci�n de los nuevos registros luego de la eliminación
 	
 	try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File("Medicamentos.txt")))) {
 		StringJoiner joiner = new StringJoiner(",");
@@ -177,7 +177,7 @@ public void EliminarMedicamentos (JTable tablaMedicamentos, JTextField codigoMed
 			
 			bw.write(joiner.toString());
 			bw.newLine();
-			JOptionPane.showMessageDialog(null, "Se elimin� correctamente");
+			JOptionPane.showMessageDialog(null, "Se eliminó correctamente");
 		}
 
 		
@@ -201,7 +201,7 @@ public void EditarMedicamentos(JTable tablaMedicamentos) {
 			JOptionPane.showMessageDialog(null,"Ocurrió un problema"+ e.toString());
 		}
 		
-		//Creaci�n de los nuevos registros luego de la eliminaci�n
+		//Creaci�n de los nuevos registros luego de la eliminación
 		
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File("Medicamentos.txt")))) {
 			StringJoiner joiner = new StringJoiner(",");
@@ -226,7 +226,7 @@ public void EditarMedicamentos(JTable tablaMedicamentos) {
 				System.out.println(joiner.toString());
 				bw.write(joiner.toString());
 				bw.newLine();
-				//JOptionPane.showMessageDialog(null, "Se modific� correctamente");
+				//JOptionPane.showMessageDialog(null, "Se modificó correctamente");
 			}
 
 			

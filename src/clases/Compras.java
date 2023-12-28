@@ -63,18 +63,18 @@ public void crearArchivoCompras() {
 public void agregarRegistrosCompras() {
 	try {
 		FileWriter fw = new FileWriter("Compras.txt",true);
-		
+                
 		fw.write(getCodigoCompras());
 		fw.write(",");
 		fw.write(getNombreCompras());
 		fw.write(",");
 		fw.write(getDescripcionCompras());
-		fw.write("\n");
-                fw.write(getPrecioCompras());
-		fw.write("\n");
+		fw.write(",");
+		fw.write(getPrecioCompras());
+                fw.write("\n");
 		fw.close();
 		
-		JOptionPane.showMessageDialog(null,"Se registr� correctamente");
+		JOptionPane.showMessageDialog(null,"Se registró correctamente");
 	} catch (Exception e) {
 		JOptionPane.showMessageDialog(null,"Ocurrió un error al registrar" + e.toString());
 	}
@@ -118,18 +118,18 @@ public void MostrarTotalCompras(JTable tablaTotalCompras) {
 	}
 }
 
-public void seleccionarCompras(JTable tablaCompra) {
+public void seleccionarCompras(JTable tablaCompras) {
 	
 	try {
 		
-		int  fila = tablaCompra.getSelectedRow();
+		int  fila = tablaCompras.getSelectedRow();
 		
 		if (fila>=0) {
 			
-			setCodigoCompras(tablaCompra.getValueAt(fila, 0).toString());
-			setNombreCompras(tablaCompra.getValueAt(fila, 1).toString());
-			setDescripcionCompras(tablaCompra.getValueAt(fila, 2).toString());
-                        setPrecioCompras(tablaCompra.getValueAt(fila, 3).toString());
+			setCodigoCompras(tablaCompras.getValueAt(fila, 0).toString());
+			setNombreCompras(tablaCompras.getValueAt(fila, 1).toString());
+			setDescripcionCompras(tablaCompras.getValueAt(fila, 2).toString());
+                        setPrecioCompras(tablaCompras.getValueAt(fila, 3).toString());
 		}
 		
 	} catch (Exception e) {
@@ -138,10 +138,10 @@ public void seleccionarCompras(JTable tablaCompra) {
 	
 }
 
-public void EliminarCompras (JTable tablaCompra, JTextField codigoCompras) {
+public void EliminarCompras (JTable tablaCompras, JTextField codigoCompras) {
 	
-	//Eliminaci�n visual de la tabla
-	DefaultTableModel model = (DefaultTableModel)tablaCompra.getModel();
+	//Eliminación visual de la tabla
+	DefaultTableModel model = (DefaultTableModel)tablaCompras.getModel();
 	
 	for (int i = 0; i < model.getRowCount(); i++) {
 		
@@ -161,41 +161,45 @@ public void EliminarCompras (JTable tablaCompra, JTextField codigoCompras) {
 		JOptionPane.showMessageDialog(null,"Ocurrió un problema"+ e.toString());
 	}
 	
-	//Creaci�n de los nuevos registros luego de la eliminaci�n
+	//Creaci�n de los nuevos registros luego de la eliminación
 	
-	try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File("RRHH.txt")))) {
+	try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File("Compras.txt")))) {
 		StringJoiner joiner = new StringJoiner(",");
 		
-		for (int col = 0; col < tablaCompra.getColumnCount(); col++) {
-			joiner.add(tablaCompra.getColumnName(col));
+		for (int col = 0; col < tablaCompras.getColumnCount(); col++) {
+			joiner.add(tablaCompras.getColumnName(col));
 		}
 		
 		System.out.println(joiner.toString());
 		bw.write(joiner.toString());
 		bw.newLine();
 		
-		for (int row = 0; row < tablaCompra.getRowCount(); row++) {
+		for (int row = 0; row < tablaCompras.getRowCount(); row++) {
 			 joiner = new StringJoiner(",");		
-			for (int col = 0; col < tablaCompra.getColumnCount(); col++) {
+			for (int col = 0; col < tablaCompras.getColumnCount(); col++) {
 				
-				Object obj = tablaCompra.getValueAt(row, col);
+				Object obj = tablaCompras.getValueAt(row, col);
 				String value = obj == null ? "null" :obj.toString();
 				joiner.add(value);
 				
 			}
 			
+			
 			bw.write(joiner.toString());
 			bw.newLine();
-			JOptionPane.showMessageDialog(null, "Se elimin� correctamente");
+			JOptionPane.showMessageDialog(null, "Se eliminó correctamente");
 		}
 
 		
 	} catch (Exception e) {
 		JOptionPane.showMessageDialog(null, "Ocurrio un error");
 	}
+	
+	
+	
 }
 
-public void EditarCompras(JTable tablaCompra) {
+public void EditarCompras(JTable tablaCompras) {
 	
 	//Limpieza del archivo .txt
 	
@@ -207,23 +211,23 @@ public void EditarCompras(JTable tablaCompra) {
 			JOptionPane.showMessageDialog(null,"Ocurrió un problema"+ e.toString());
 		}
 		
-		//Creaci�n de los nuevos registros luego de la eliminaci�n
+		//Creaci�n de los nuevos registros luego de la eliminación
 		
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File("RRHH.txt")))) {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(new File("Compras.txt")))) {
 			StringJoiner joiner = new StringJoiner(",");
-			for (int col = 0; col < tablaCompra.getColumnCount(); col++) {
-				joiner.add(tablaCompra.getColumnName(col));
+			for (int col = 0; col < tablaCompras.getColumnCount(); col++) {
+				joiner.add(tablaCompras.getColumnName(col));
 			}
 			
 			System.out.println(joiner.toString());
 			bw.write(joiner.toString());
 			bw.newLine();
 			
-			for (int row = 0; row < tablaCompra.getRowCount(); row++) {
+			for (int row = 0; row < tablaCompras.getRowCount(); row++) {
 				joiner = new StringJoiner(",");
-				for (int col = 0; col < tablaCompra.getColumnCount(); col++) {
+				for (int col = 0; col < tablaCompras.getColumnCount(); col++) {
 					
-					Object obj = tablaCompra.getValueAt(row, col);
+					Object obj = tablaCompras.getValueAt(row, col);
 					String value = obj == null ? "null" :obj.toString();
 					joiner.add(value);
 					
@@ -232,7 +236,7 @@ public void EditarCompras(JTable tablaCompra) {
 				System.out.println(joiner.toString());
 				bw.write(joiner.toString());
 				bw.newLine();
-				//JOptionPane.showMessageDialog(null, "Se modific� correctamente");
+				//JOptionPane.showMessageDialog(null, "Se modificó correctamente");
 			}
 
 			

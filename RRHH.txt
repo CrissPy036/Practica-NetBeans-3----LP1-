@@ -1,0 +1,6 @@
+CodigoRRHH,NombreRRHH,CargoRRHH,EspecialidadRRHH
+1,Agapito,Vendedor,Ventas
+2,Pancha,Cajera,Contable
+3,Luciano,Repartidor,Ninguno
+4,Maria,Vendedor,Ventas
+5,Jose,Supervisor,Administracion
